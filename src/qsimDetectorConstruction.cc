@@ -942,6 +942,17 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
         G4VPhysicalVolume* lightguide_phys = new G4PVPlacement(rotlg,G4ThreeVector(0.*cm,0,-0.375*cm+.9*cm),lightguide_log,"lightguide_phys", det_log,false,0);
         G4VPhysicalVolume* pmt_phys = new G4PVPlacement(rot_pmt,G4ThreeVector(7.25*cm+plngth+7.*cm,0.,.9*cm),pmt_log,"PMT",det_log,false,0);
         G4VPhysicalVolume* cath_phys = new G4PVPlacement(rot_pmt,G4ThreeVector(7.25*cm+2.*plngth+7.*cm,0.,.9*cm),cath_log,"CATH",det_log,false,0);
+	    
+	G4OpticalSurface* CTHOpSurface = new G4OpticalSurface("CathodeOpSurface");
+        CTHOpSurface -> SetType(dielectric_metal);
+        CTHOpSurface -> SetFinish(polished);
+        CTHOpSurface -> SetModel(glisur);
+        G4MaterialPropertiesTable* COpSurfaceProperty = new G4MaterialPropertiesTable();
+        COpSurfaceProperty -> AddProperty("REFLECTIVITY",PhotonEnergy,Reflectivity2,nEntries);
+        COpSurfaceProperty -> AddProperty("EFFICIENCY",PhotonEnergy,EfficiencyArray,nEntries);
+        CTHOpSurface -> SetMaterialPropertiesTable(COpSurfaceProperty);
+        G4LogicalBorderSurface* CathodeSurface =
+        new G4LogicalBorderSurface("CathodeSurface",pmt_phys,cath_phys,CTHOpSurface);
     }
 
     if (fDetMode == 1) {           
@@ -980,6 +991,18 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
 
         //G4VPhysicalVolume* frontMylar_1_phys
         //= new G4PVPlacement(rotMylar_5,G4ThreeVector(-quartz_y + quartz_z/2-0.01*mm-0.05*mm/2,0*mm,0*mm),mylar_box_4_log,"rightMylar_1_phys",det_log,false,0);
+	    
+	
+	G4OpticalSurface* CTHOpSurface = new G4OpticalSurface("CathodeOpSurface");
+        CTHOpSurface -> SetType(dielectric_metal);
+        CTHOpSurface -> SetFinish(polished);
+        CTHOpSurface -> SetModel(glisur);
+        G4MaterialPropertiesTable* COpSurfaceProperty = new G4MaterialPropertiesTable();
+        COpSurfaceProperty -> AddProperty("REFLECTIVITY",PhotonEnergy,Reflectivity2,nEntries);
+        COpSurfaceProperty -> AddProperty("EFFICIENCY",PhotonEnergy,EfficiencyArray,nEntries);
+        CTHOpSurface -> SetMaterialPropertiesTable(COpSurfaceProperty);
+        G4LogicalBorderSurface* CathodeSurface =
+        new G4LogicalBorderSurface("CathodeSurface",pmt_phys,cath_phys,CTHOpSurface);
 
     }
 
@@ -1101,6 +1124,18 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
 
 
     G4VPhysicalVolume* cath_phys = new G4PVPlacement(rot_pmt,G4ThreeVector(347.32*mm+2.5*mm+2.*plngth,0.0*mm,-8.66*mm),cath_log,"CATH",det_log,false,0);
+	    
+	    
+    G4OpticalSurface* CTHOpSurface = new G4OpticalSurface("CathodeOpSurface");
+    CTHOpSurface -> SetType(dielectric_metal);
+    CTHOpSurface -> SetFinish(polished);
+    CTHOpSurface -> SetModel(glisur);
+    G4MaterialPropertiesTable* COpSurfaceProperty = new G4MaterialPropertiesTable();
+    COpSurfaceProperty -> AddProperty("REFLECTIVITY",PhotonEnergy,Reflectivity2,nEntries);
+    COpSurfaceProperty -> AddProperty("EFFICIENCY",PhotonEnergy,EfficiencyArray,nEntries);
+    CTHOpSurface -> SetMaterialPropertiesTable(COpSurfaceProperty);
+    G4LogicalBorderSurface* CathodeSurface =
+    new G4LogicalBorderSurface("CathodeSurface",pmt_phys,cath_phys,CTHOpSurface);
 
     G4RotationMatrix* WRoll = new G4RotationMatrix;
     WRoll->rotateY(0.*deg);
