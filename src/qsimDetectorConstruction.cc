@@ -112,6 +112,10 @@ qsimDetectorConstruction::qsimDetectorConstruction() {
 	    quartz_x = 48.*cm/2;
 	    quatrz_y = 12.*cm/2;
 	    quartz_z = 10.0*mm/2;
+		
+		quartz2_x = 1.75*cm;
+		quartz2_y = 7.5*cm;
+		quartz2_z = 0.5*cm;
     }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // ====================================================================================================================================================================
@@ -381,6 +385,11 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
     double det_x, det_y, det_z;
     
     world_x = world_y = world_z = 5*m;
+	
+	if (fDetMode == 5){
+		world_x = world_y = world_z = 1.5*m;
+	}
+
     if (fDetMode == 0) {
     det_x = 15*cm;
     det_y = 6*cm;
@@ -505,8 +514,7 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
 
 	
     if (fDetMode == 2) {
-	    G4RotationMatrix* rotTung = new G4RotationMatrix;
-    
+g    
     	    rotTung->rotateX(0.*rad);
 	    
 	    G4VPhysicalVolume* tungsten_box_phys_1 = new G4PVPlacement(rotTung,G4ThreeVector(-10.0*mm/4,0,quartz_zPos-quartz_z-8*mm/2),tungsten_box_log,"tungsten", det_log,false,0);
