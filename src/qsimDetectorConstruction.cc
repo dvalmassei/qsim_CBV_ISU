@@ -513,6 +513,7 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
     tungsten_box_log->SetVisAttributes(tungsten_boxx);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     if (fDetMode == 2) {
 	    G4RotationMatrix* rotTung = new G4RotationMatrix;
@@ -522,6 +523,8 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
 	    G4VPhysicalVolume* tungsten_box_phys_1 = new G4PVPlacement(rotTung,G4ThreeVector(-10.0*mm/4,0,quartz_zPos-quartz_z-8*mm/2),tungsten_box_log,"tungsten", det_log,false,0);
     }
 
+=======
+>>>>>>> parent of 6f4e529 (Add tungsten to fDetMode == 2)
 =======
 >>>>>>> parent of 6f4e529 (Add tungsten to fDetMode == 2)
     if (fDetMode == 3) {
