@@ -490,8 +490,8 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
     tungsten_boxx->SetColour(0.2, 0.2, 0.2);
     tungsten_box_log->SetVisAttributes(tungsten_boxx);
 
-=======
->>>>>>> parent of 6f4e529 (Add tungsten to fDetMode == 2)
+//=======
+//>> parent of 6f4e529 (Add tungsten to fDetMode == 2)
     if (fDetMode == 3) {
 
     G4RotationMatrix* rotTung = new G4RotationMatrix;
