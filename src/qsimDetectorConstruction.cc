@@ -35,7 +35,6 @@ void qsimDetectorConstruction::DetModeSet(G4int detMode = 3) {
         // 2 SAM
         // 3 showerMax
         // 4 tandem mount
-	  // 5 LAM - MOLLER
 
 }
 
@@ -46,7 +45,6 @@ void qsimDetectorConstruction::QModeSet(G4int qMode = 2) {
     // 0 is PREX-II prototype (so-called "design 3")
         // 1 SAM
         // 2 showerMax
-	  // 3 LAM - MOLLER
 
 }
 
@@ -106,18 +104,6 @@ qsimDetectorConstruction::qsimDetectorConstruction() {
         quartz_z = 10.0*mm/2; // REPLACE END
 	quartz2_z = 0.5*cm;
     }
-
-///////////////////////////////////////////// LAM - MOLLER //////////////////////////////////////////////////////////////////////
-    if (fQMode == 3) {
-	    quartz_x = 48.*cm/2;
-	    quatrz_y = 12.*cm/2;
-	    quartz_z = 10.0*mm/2;
-
-		  quartz2_x = 1.75*cm;
-		  quartz2_y = 7.5*cm;
-		  quartz2_z = 0.5*cm;
-    }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // ====================================================================================================================================================================
     quartz_zPos = 0.0*cm; //-.9*cm;//-1.1*cm; //-.9*cm; //-.6*cm;
 
@@ -418,20 +404,12 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
     det_z = 5*cm;
     }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    if (fDetMode == 5) {
-	  det_x = 50*cm;
-	  det_y = 30*cm;
-	  det_z = 20*cm;
-    }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     G4Box* world_box = new G4Box("World",world_x,world_y,world_z);
 
     G4LogicalVolume* world_log
     = new G4LogicalVolume(world_box,Air,"World",0,0,0);
 
-    //world_log->SetVisAttributes(G4VisAttributes::Invisible);
+    world_log->SetVisAttributes(G4VisAttributes::Invisible);
 
     G4VPhysicalVolume* world_phys
     = new G4PVPlacement(0,G4ThreeVector(),world_log,"World",0,false,0);
@@ -448,7 +426,7 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
     G4LogicalVolume* det_log_c2
     = new G4LogicalVolume(det_box_c1,Air,"Detector_log_c2",0,0,0);
 
-    //det_log->SetVisAttributes(G4VisAttributes::Invisible);
+    det_log->SetVisAttributes(G4VisAttributes::Invisible);
     det_log_c1->SetVisAttributes(G4VisAttributes::Invisible);
     det_log_c2->SetVisAttributes(G4VisAttributes::Invisible);
 
@@ -512,19 +490,6 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
     tungsten_boxx->SetColour(0.2, 0.2, 0.2);
     tungsten_box_log->SetVisAttributes(tungsten_boxx);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-    if (fDetMode == 2) {
-	    G4RotationMatrix* rotTung = new G4RotationMatrix;
-
-    	    rotTung->rotateX(0.*rad);
-
-	    G4VPhysicalVolume* tungsten_box_phys_1 = new G4PVPlacement(rotTung,G4ThreeVector(-10.0*mm/4,0,quartz_zPos-quartz_z-8*mm/2),tungsten_box_log,"tungsten", det_log,false,0);
-    }
-
-=======
->>>>>>> parent of 6f4e529 (Add tungsten to fDetMode == 2)
 =======
 >>>>>>> parent of 6f4e529 (Add tungsten to fDetMode == 2)
     if (fDetMode == 3) {
@@ -1741,35 +1706,6 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
 
     //G4LogicalSkinSurface* CathSurface_c1 = new
     //G4LogicalSkinSurface("CathOpS2", cath_log_c1,CTHOpSurface);
-
-////////////////////////////////////////////////////// LAM author: Daniel Valmassei //////////////////////////////////////////////
-    if (fDetMode == 5){
-
-	      detrot->rotateY(0.*deg);
-        G4RotationMatrix* rotlg = new G4RotationMatrix;
-        rotlg->rotateY(0.*deg);
-        rotlg->rotateZ(0.*deg);
-
-        rot_pmt->rotateY(0.*rad);
-        //G4VPhysicalVolume* tmirror_phys = new G4PVPlacement(rot_pmt,G4ThreeVector(7.25*cm+lngth+2.*cm,0.,.9*cm),tmirror_log,"TMirror",det_log,false,0);
-        G4VPhysicalVolume* lightguide_phys = new G4PVPlacement(rotlg,G4ThreeVector(0.*cm,0,-0.375*cm+.9*cm),lightguide_log,"lightguide_phys", det_log,false,0);
-        G4VPhysicalVolume* pmt_phys = new G4PVPlacement(rot_pmt,G4ThreeVector(7.25*cm+plngth+7.*cm,0.,.9*cm),pmt_log,"PMT",det_log,false,0);
-        G4VPhysicalVolume* cath_phys = new G4PVPlacement(rot_pmt,G4ThreeVector(7.25*cm+2.*plngth+7.*cm,0.,.9*cm),cath_log,"CATH",det_log,false,0);
-
-	      G4OpticalSurface* CTHOpSurface = new G4OpticalSurface("CathodeOpSurface");
-        CTHOpSurface -> SetType(dielectric_metal);
-        CTHOpSurface -> SetFinish(polished);
-        CTHOpSurface -> SetModel(glisur);
-        G4MaterialPropertiesTable* COpSurfaceProperty = new G4MaterialPropertiesTable();
-        COpSurfaceProperty -> AddProperty("REFLECTIVITY",PhotonEnergy,Reflectivity2,nEntries);
-        COpSurfaceProperty -> AddProperty("EFFICIENCY",PhotonEnergy,EfficiencyArray,nEntries);
-        CTHOpSurface -> SetMaterialPropertiesTable(COpSurfaceProperty);
-        G4LogicalBorderSurface* CathodeSurface =
-        new G4LogicalBorderSurface("CathodeSurface",pmt_phys,cath_phys,CTHOpSurface);
-
-
-    }
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     // Generate & Add Material Properties Table attached to the optical surfaces
 
