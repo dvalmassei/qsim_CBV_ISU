@@ -35,6 +35,7 @@ void qsimDetectorConstruction::DetModeSet(G4int detMode = 3) {
         // 2 SAM
         // 3 showerMax
         // 4 tandem mount
+        // 5 LAM - MOLLER
 
 }
 
@@ -45,6 +46,7 @@ void qsimDetectorConstruction::QModeSet(G4int qMode = 2) {
     // 0 is PREX-II prototype (so-called "design 3")
         // 1 SAM
         // 2 showerMax
+        // 3 LAM - MOLLER
 
 }
 
@@ -105,6 +107,21 @@ qsimDetectorConstruction::qsimDetectorConstruction() {
 	quartz2_z = 0.5*cm;
     }
 // ====================================================================================================================================================================
+
+
+// ================================== LAM - Daniel Valmassei ===================
+    if (fQMode == 3) {
+      quartz_x = 48*cm/2;
+      quartz2_x = 1.75*cm;
+      quartz_y = 1.*cm/2;//1.65*cm;
+      quartz2_y = 7.5*cm;
+      //Change quartz thickness here.
+      quartz_z = 12*cm;//0.65*cm;
+      quartz2_z = 0.5*cm;
+    }
+// ================================== LAM - Daniel Valmassei ===================
+
+
     quartz_zPos = 0.0*cm; //-.9*cm;//-1.1*cm; //-.9*cm; //-.6*cm;
 
     cone_rmin1 = 2.1*cm;
@@ -372,9 +389,11 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
 
     world_x = world_y = world_z = 5*m;
 
-	if (fDetMode == 5){
-		world_x = world_y = world_z = 1.5*m;
-	}
+// ================================== LAM - Daniel Valmassei ===================
+	  if (fDetMode == 5){
+		    world_x = world_y = world_z = 1.5*m;
+	  }
+// ================================== LAM - Daniel Valmassei ===================
 
     if (fDetMode == 0) {
     det_x = 15*cm;
@@ -403,6 +422,15 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
     det_y = 20*cm;
     det_z = 5*cm;
     }
+
+// ================================== LAM - Daniel Valmassei ===================
+    if (fDetMode == 5) {
+      det_x = 50*cm;
+      det_y = 30*cm;
+      det_z = 20*cm;
+    }
+// ================================== LAM - Daniel Valmassei ===================
+
 
     G4Box* world_box = new G4Box("World",world_x,world_y,world_z);
 
@@ -961,6 +989,38 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
         G4LogicalBorderSurface* CathodeSurface =
         new G4LogicalBorderSurface("CathodeSurface",pmt_phys,cath_phys,CTHOpSurface);
     }
+
+// ================================== LAM - Daniel Valmassei ===================
+
+    if (fDetMode == 5) {
+
+      detrot->rotateY(45.*deg);
+      G4RotationMatrix* rotlg = new G4RotationMatrix;
+      rotlg->rotateY(M_PI/2.*rad);
+      rotlg->rotateZ(-M_PI/2.*rad);
+
+      rot_pmt->rotateY(M_PI/2.*rad);
+      //G4VPhysicalVolume* tmirror_phys = new G4PVPlacement(rot_pmt,G4ThreeVector(7.25*cm+lngth+2.*cm,0.,.9*cm),tmirror_log,"TMirror",det_log,false,0);
+      G4VPhysicalVolume* lightguide_phys = new G4PVPlacement(rotlg,G4ThreeVector(0.*cm,0,-0.375*cm+.9*cm),lightguide_log,"lightguide_phys", det_log,false,0);
+      G4VPhysicalVolume* pmt_phys = new G4PVPlacement(rot_pmt,G4ThreeVector(7.25*cm+plngth+7.*cm,0.,.9*cm),pmt_log,"PMT",det_log,false,0);
+      G4VPhysicalVolume* cath_phys = new G4PVPlacement(rot_pmt,G4ThreeVector(7.25*cm+2.*plngth+7.*cm,0.,.9*cm),cath_log,"CATH",det_log,false,0);
+
+      G4OpticalSurface* CTHOpSurface = new G4OpticalSurface("CathodeOpSurface");
+      CTHOpSurface -> SetType(dielectric_metal);
+      CTHOpSurface -> SetFinish(polished);
+      CTHOpSurface -> SetModel(glisur);
+      G4MaterialPropertiesTable* COpSurfaceProperty = new G4MaterialPropertiesTable();
+      COpSurfaceProperty -> AddProperty("REFLECTIVITY",PhotonEnergy,Reflectivity2,nEntries);
+      COpSurfaceProperty -> AddProperty("EFFICIENCY",PhotonEnergy,EfficiencyArray,nEntries);
+      CTHOpSurface -> SetMaterialPropertiesTable(COpSurfaceProperty);
+      G4LogicalBorderSurface* CathodeSurface =
+      new G4LogicalBorderSurface("CathodeSurface",pmt_phys,cath_phys,CTHOpSurface);
+
+    }
+
+// ================================== LAM - Daniel Valmassei ===================
+
+
 
     if (fDetMode == 1) {
         detrot->rotateY(fDetAngle);
