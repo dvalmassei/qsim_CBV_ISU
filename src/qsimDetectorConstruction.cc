@@ -113,11 +113,11 @@ qsimDetectorConstruction::qsimDetectorConstruction() {
     if (fQMode == 3) {
       quartz_x = 48*cm;
       quartz2_x = 48.*cm;
-      quartz_y = 10.*cm;//1.65*cm;
-      quartz2_y = 10.*cm;
+      quartz_y = 1.*cm;//1.65*cm;
+      quartz2_y = 1.*cm;
       //Change quartz thickness here.
-      quartz_z = 1.*cm;//0.65*cm;
-      quartz2_z = 1.*cm;
+      quartz_z = 10.*cm;//0.65*cm;
+      quartz2_z = 10.*cm;
     }
 // ================================== LAM - Daniel Valmassei ===================
 
