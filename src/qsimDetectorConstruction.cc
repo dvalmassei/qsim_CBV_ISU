@@ -111,13 +111,13 @@ qsimDetectorConstruction::qsimDetectorConstruction() {
 
 // ================================== LAM - Daniel Valmassei ===================
     if (fQMode == 3) {
-      quartz_x = 48*cm/2;
-      quartz2_x = 48.*cm/2;
-      quartz_y = 10.*cm/2;//1.65*cm;
-      quartz2_y = 10.*cm/2;
+      quartz_x = 48*cm;
+      quartz2_x = 48.*cm;
+      quartz_y = 10.*cm;//1.65*cm;
+      quartz2_y = 10.*cm;
       //Change quartz thickness here.
-      quartz_z = 1.*cm/2;//0.65*cm;
-      quartz2_z = 1.*cm/2;
+      quartz_z = 1.*cm;//0.65*cm;
+      quartz2_z = 1.*cm;
     }
 // ================================== LAM - Daniel Valmassei ===================
 
@@ -454,7 +454,7 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
     G4LogicalVolume* det_log_c2
     = new G4LogicalVolume(det_box_c1,Air,"Detector_log_c2",0,0,0);
 
-    //det_log->SetVisAttributes(G4VisAttributes::Invisible);
+    det_log->SetVisAttributes(G4VisAttributes::Invisible);
     det_log_c1->SetVisAttributes(G4VisAttributes::Invisible);
     det_log_c2->SetVisAttributes(G4VisAttributes::Invisible);
 
