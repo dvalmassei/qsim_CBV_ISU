@@ -488,7 +488,7 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
     if (fDetMode == 5){
 
       G4RotationMatrix* rm = new G4RotationMatrix();
-      rm->RotateX(0.*deg);
+      rm->rotateX(0.*deg);
 
       G4VSolid* quartz_log_half
       = new G4UnionSolid("QuartzHalf", quartz_log, quartz_log2, rm, G4ThreeVector(18.*cm,12.*cm,0.*cm));
