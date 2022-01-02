@@ -505,7 +505,7 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
     rotQ2->rotateZ(0.*deg);
 
     G4VPhysicalVolume* quartz2_phys
-    = new G4PVPlacement(rotQ2,G4ThreeVector(18,18,quartz_zPos),quartz_log2,"Quartz2",det_log_c1,false,0);
+    = new G4PVPlacement(rotQ2,G4ThreeVector(0,0,quartz_zPos),quartz_log2,"Quartz2",det_log_c1,false,0);
 
  // TUNGSTEN DIMENSIONS ===================================================================================================================================================
          Wthickness = 8*mm/2-0.01*mm/2; // REPLACES LINE 374 (this is new)
@@ -1588,7 +1588,7 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
 
     if (fDetMode == 5) {
       G4VPhysicalVolume* det_phys_c1
-      = new G4PVPlacement(detrot_c3,G4ThreeVector(18.*cm,12.*cm,0.*cm),det_log_c1,"detector_phys_c1",world_log,false,0);
+      = new G4PVPlacement(detrot_c3,G4ThreeVector(fDetPosX + 18.*cm, fDetPosY + 12.*cm,0.*cm),det_log_c1,"detector_phys_c1",world_log,false,0);
       // quartz optical properties for quart2_phys
       G4OpticalSurface* OpQuartzSurface_c1 = new G4OpticalSurface("QuartzSurface_c1");
       OpQuartzSurface_c1->SetType(dielectric_dielectric);
