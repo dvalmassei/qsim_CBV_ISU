@@ -486,8 +486,11 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
 
     if (fDetMode == 5){
 
+      G4RotationMatrix* rm = new G4RotationMatrix();
+      rm->RotateX(0.*deg);
+
       G4UnionSolid* quartz_log_half
-      = new G4UnionSolid("QuartzHalf", quartz_log, quartz_log2, 0, G4ThreeVector(18.*cm,12.*cm,0.*cm));
+      = new G4UnionSolid("QuartzHalf", quartz_log, quartz_log2, rm, G4ThreeVector(18.*cm,12.*cm,0.*cm));
 
     }
 
@@ -519,6 +522,7 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
     = new G4PVPlacement(rotQ2,G4ThreeVector(0,0,quartz_zPos),quartz_log2,"Quartz2",det_log_c1,false,0);
 
     if (fDetMode == 5) {
+
       G4PhysicalVolume* quartz_half_phys
       = new G4PVPlacement(rotQ,G4ThreeVector(0,0,quartz_zPos),quartz_half_log,"QuartzHalf",det_log,false,0);
     }
