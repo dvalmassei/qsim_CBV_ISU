@@ -470,14 +470,14 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
     G4double q_yLB = quartz_y - (quartz_z);
     G4double q_yLB2 = quartz2_y - (quartz2_z);
 
-    G4Trap* quartz_box = new G4Trap("Quartz", 2*quartz_x, 2*quartz_z, 2*quartz_y, 0);//2*q_yLB);
+    G4Trap* quartz_box = new G4Trap("Quartz", 2*quartz_x, 2*quartz_z, 2*quartz_y, 2*q_yLB);
 
     G4LogicalVolume* quartz_log
     = new G4LogicalVolume(quartz_box,Quartz,"Quartz",0,0,0);
 
     //quartz_log->SetUserLimits(MyLimits);
 
-    G4Trap* quartz_box2 = new G4Trap("Quartz2", 2*quartz2_x, 2*quartz2_z, 2*quartz2_y, 0);//2*q_yLB2);
+    G4Trap* quartz_box2 = new G4Trap("Quartz2", 2*quartz2_x, 2*quartz2_z, 2*quartz2_y, 2*q_yLB2);
 
     G4LogicalVolume* quartz_log2
     = new G4LogicalVolume(quartz_box2,Quartz,"Quartz2",0,0,0);
