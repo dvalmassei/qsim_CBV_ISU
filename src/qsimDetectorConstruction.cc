@@ -24,6 +24,7 @@
 #include "G4SubtractionSolid.hh"
 #include "G4VisAttributes.hh"
 #include "G4UserLimits.hh"
+#include "G4UnionSolid.hh"
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
