@@ -1586,6 +1586,23 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
     //new G4LogicalBorderSurface("QuartzSurface2",quartz2_phys,det_phys_c1,OpQuartzSurface_c1);
     }
 
+    if (fDetMode == 5) {
+      G4VPhysicalVolume* det_phys_c1
+      = new G4PVPlacement(detrot_c3,G4ThreeVector(fDetPosX,fDetPosY,0.*cm),det_log_c1,"detector_phys_c1",world_log,false,0);
+      // quartz optical properties for quart2_phys
+      G4OpticalSurface* OpQuartzSurface_c1 = new G4OpticalSurface("QuartzSurface_c1");
+      OpQuartzSurface_c1->SetType(dielectric_dielectric);
+      OpQuartzSurface_c1->SetFinish(ground);
+      //OpQuartzSurface_c1->SetFinish(polished);
+      OpQuartzSurface_c1->SetModel(glisur);
+      OpQuartzSurface_c1->SetPolish(fQuartzPolish);
+      //OpQuartzSurface->SetModel(unified);
+      //OpQuartzSurface->SetSigmaAlpha(0.02);
+
+      //G4LogicalBorderSurface* QuartzSurface2 =
+      //new G4LogicalBorderSurface("QuartzSurface2",quartz2_phys,det_phys_c1,OpQuartzSurface_c1);
+    }
+
     // mirrors and cathode
     G4OpticalSurface* MOpSurface = new G4OpticalSurface("MirrorOpSurface");
     G4OpticalSurface* MOpSurface_laterals = new G4OpticalSurface("MirrorOpSurface");
