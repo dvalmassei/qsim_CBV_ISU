@@ -482,6 +482,14 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
     G4LogicalVolume* quartz_log2
     = new G4LogicalVolume(quartz_box2,Quartz,"Quartz2",0,0,0);
 
+
+    if (fDetMode == 5){
+
+      G4UnionSolid* quartz_log_half
+      = new G4UnionSolid("QuartzHalf", quartz_log, quartz_log2, 0, G4ThreeVector(18.*cm,12.*cm,0.*cm));
+
+    }
+
     //qsimScintDetector* quartzSD = new qsimScintDetector("QuartzSD", 10);
 
     //SDman->AddNewDetector(quartzSD);
@@ -496,8 +504,10 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
         rotQ->rotateZ(M_PI*rad);
     }
 
+    if (fDetMode != 5) {
     G4VPhysicalVolume* quartz_phys
     = new G4PVPlacement(rotQ,G4ThreeVector(0,0,quartz_zPos),quartz_log,"Quartz", det_log,false,0);
+    }
 
     G4RotationMatrix* rotQ2 = new G4RotationMatrix;
 
@@ -506,6 +516,11 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
 
     G4VPhysicalVolume* quartz2_phys
     = new G4PVPlacement(rotQ2,G4ThreeVector(0,0,quartz_zPos),quartz_log2,"Quartz2",det_log_c1,false,0);
+
+    if (fDetMode == 5) {
+      G4PhysicalVolume* quartz_half_phys
+      = new G4PVPlacement(rotQ,G4ThreeVector(0,0,quartz_zPos),quartz_half_log,"QuartzHalf",det_log,false,0);
+    }
 
  // TUNGSTEN DIMENSIONS ===================================================================================================================================================
          Wthickness = 8*mm/2-0.01*mm/2; // REPLACES LINE 374 (this is new)
@@ -1586,22 +1601,6 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
     //new G4LogicalBorderSurface("QuartzSurface2",quartz2_phys,det_phys_c1,OpQuartzSurface_c1);
     }
 
-    if (fDetMode == 5) {
-      G4VPhysicalVolume* det_phys_c1
-      = new G4PVPlacement(detrot_c3,G4ThreeVector(fDetPosX + 18.*cm, fDetPosY + 12.*cm,0.*cm),det_log_c1,"detector_phys_c1",world_log,false,0);
-      // quartz optical properties for quart2_phys
-      G4OpticalSurface* OpQuartzSurface_c1 = new G4OpticalSurface("QuartzSurface_c1");
-      OpQuartzSurface_c1->SetType(dielectric_dielectric);
-      OpQuartzSurface_c1->SetFinish(ground);
-      //OpQuartzSurface_c1->SetFinish(polished);
-      OpQuartzSurface_c1->SetModel(glisur);
-      OpQuartzSurface_c1->SetPolish(fQuartzPolish);
-      //OpQuartzSurface->SetModel(unified);
-      //OpQuartzSurface->SetSigmaAlpha(0.02);
-
-      //G4LogicalBorderSurface* QuartzSurface2 =
-      //new G4LogicalBorderSurface("QuartzSurface2",quartz2_phys,det_phys_c1,OpQuartzSurface_c1);
-    }
 
     // mirrors and cathode
     G4OpticalSurface* MOpSurface = new G4OpticalSurface("MirrorOpSurface");
