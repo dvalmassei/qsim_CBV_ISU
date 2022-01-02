@@ -111,7 +111,7 @@ qsimDetectorConstruction::qsimDetectorConstruction() {
 
 // ================================== LAM - Daniel Valmassei ===================
     if (fQMode == 3) {
-      quartz_x = 48*cm/2;
+      quartz_x = 48.*cm/2;
       quartz2_x = 48.*cm/2;
       quartz_y = 10.*cm/2;//1.65*cm;
       quartz2_y = 10.*cm/2;
@@ -425,7 +425,7 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
 
 // ================================== LAM - Daniel Valmassei ===================
     if (fDetMode == 5) {
-      det_x = 50*cm;
+      det_x = 100*cm;
       det_y = 30*cm;
       det_z = 20*cm;
     }
