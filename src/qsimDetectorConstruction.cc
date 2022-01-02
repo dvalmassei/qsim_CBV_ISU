@@ -493,8 +493,11 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
     G4VSolid* quartz_half
     = new G4UnionSolid("QuartzHalf", quartz_box, quartz_box2, rm, G4ThreeVector(18.*cm,0.*cm,12.*cm));
 
+    G4VSolid* quartz_full
+    = new G4UnionSolid("QuartzFull", quartz_half, quartz_box2, rm, G4ThreeVector(-18.*cm,0.*cm,12.*cm));
+
     G4LogicalVolume* quartz_half_log
-    = new G4LogicalVolume(quartz_half,Quartz,"QuartzHalf",0,0,0);
+    = new G4LogicalVolume(quartz_full,Quartz,"QuartzFull",0,0,0);
 
 
     //qsimScintDetector* quartzSD = new qsimScintDetector("QuartzSD", 10);
