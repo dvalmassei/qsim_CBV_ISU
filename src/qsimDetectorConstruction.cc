@@ -115,7 +115,7 @@ qsimDetectorConstruction::qsimDetectorConstruction() {
     if (fQMode == 3) {
       quartz_x = 12.*cm/2;
       quartz2_x = 12.*cm/2;
-      quartz_y = 48.*cm/2;//1.65*cm;
+      quartz_y = 36.*cm/2;//1.65*cm;
       quartz2_y = 12.*cm/2;
       //Change quartz thickness here.
       quartz_z = 1.*cm/2;//0.65*cm;
@@ -500,10 +500,10 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
     rm->rotateX(0.*deg);
 
     G4VSolid* quartz_half
-    = new G4UnionSolid("QuartzHalf", quartz_box, quartz_box2, rm, G4ThreeVector(18.*cm,0.*cm,12.*cm));
+    = new G4UnionSolid("QuartzHalf", quartz_box, quartz_box2, rm, G4ThreeVector(12.*cm,0.*cm,12.*cm));
 
     G4VSolid* quartz_full
-    = new G4UnionSolid("QuartzFull", quartz_half, quartz_box2, rm, G4ThreeVector(-18.*cm,0.*cm,12.*cm));
+    = new G4UnionSolid("QuartzFull", quartz_half, quartz_box2, rm, G4ThreeVector(-12.*cm,0.*cm,12.*cm));
 
     G4LogicalVolume* quartz_half_log
     = new G4LogicalVolume(quartz_full,Quartz,"QuartzFull",0,0,0);
