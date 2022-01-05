@@ -213,7 +213,7 @@ G4VPhysicalVolume* qsimDetectorConstruction::Construct() {
 
     // Define optical property tables
 
-    const G4int nEntries = 160;//49 R7723Q -actualized //47 9305QKFL//205 all - old//101 280nm cut off//75 320nm cut off
+    const G4int nEntries = 205;//49 R7723Q -actualized //47 9305QKFL//205 all - old//101 280nm cut off//75 320nm cut off
 
     // Array of photon energies for R7723Q and R375
     G4double PhotonEnergy[nEntries] =
