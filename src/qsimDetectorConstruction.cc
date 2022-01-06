@@ -436,7 +436,7 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
 
 // ================================== LAM - Daniel Valmassei ===================
     if (fDetMode == 5) {
-      det_x = 100*cm;
+      det_x = 25*m;
       det_y = 30*cm;
       det_z = 20*cm;
     }
