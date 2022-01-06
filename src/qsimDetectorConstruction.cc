@@ -503,7 +503,7 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
     = new G4UnionSolid("QuartzHalf", quartz_box, quartz_box2, rm, G4ThreeVector(quartz_y - quartz2_y,0.*cm,2*quartz_x));
 
     G4VSolid* quartz_full
-    = new G4UnionSolid("QuartzFull", quartz_half, quartz_box2, rm, G4ThreeVector(quartz_y - quartz2_y,0.*cm,2*quartz_x));
+    = new G4UnionSolid("QuartzFull", quartz_half, quartz_box2, rm, G4ThreeVector(-quartz_y + quartz2_y,0.*cm,2*quartz_x));
 
     G4LogicalVolume* quartz_half_log
     = new G4LogicalVolume(quartz_full,Quartz,"QuartzFull",0,0,0);
