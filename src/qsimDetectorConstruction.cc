@@ -115,7 +115,7 @@ qsimDetectorConstruction::qsimDetectorConstruction() {
     if (fQMode == 3) {
       quartz_x = 12.*cm/2;
       quartz2_x = 12.*cm/2;
-      quartz_y = 36.*cm/2;//1.65*cm;
+      quartz_y = 20.*m/2;//1.65*cm;
       quartz2_y = 12.*cm/2;
       //Change quartz thickness here.
       quartz_z = 1.*cm/2;//0.65*cm;
@@ -1037,8 +1037,8 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
       rot_pmt->rotateY(0.*rad);
       //G4VPhysicalVolume* tmirror_phys = new G4PVPlacement(rot_pmt,G4ThreeVector(7.25*cm+lngth+2.*cm,0.,.9*cm),tmirror_log,"TMirror",det_log,false,0);
       //G4VPhysicalVolume* lightguide_phys = new G4PVPlacement(rotlg,G4ThreeVector(0.*cm,0,-0.375*cm+.9*cm),lightguide_log,"lightguide_phys", det_log,false,0);
-      G4VPhysicalVolume* pmt_phys = new G4PVPlacement(rot_pmt,G4ThreeVector(12.*cm,12.*cm,-.5*cm - plngth),pmt_log,"PMT",det_log,false,0,true);
-      G4VPhysicalVolume* cath_phys = new G4PVPlacement(rot_pmt,G4ThreeVector(12.*cm,12.*cm,-.5*cm-2.*plngth),cath_log,"CATH",det_log,false,0,true);
+      G4VPhysicalVolume* pmt_phys = new G4PVPlacement(rot_pmt,G4ThreeVector(19.5*m,12.*cm,-.5*cm - plngth),pmt_log,"PMT",det_log,false,0,true);
+      G4VPhysicalVolume* cath_phys = new G4PVPlacement(rot_pmt,G4ThreeVector(19.5*m,12.*cm,-.5*cm-2.*plngth),cath_log,"CATH",det_log,false,0,true);
 
       G4OpticalSurface* CTHOpSurface = new G4OpticalSurface("CathodeOpSurface");
       CTHOpSurface -> SetType(dielectric_metal);
