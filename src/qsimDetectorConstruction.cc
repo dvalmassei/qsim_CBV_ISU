@@ -29,7 +29,7 @@
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void qsimDetectorConstruction::DetModeSet(G4int detMode = 5) {
+void qsimDetectorConstruction::DetModeSet(G4int detMode = 2) {
 
     fDetMode = detMode;
     // 0 is PREX-I design
@@ -41,7 +41,7 @@ void qsimDetectorConstruction::DetModeSet(G4int detMode = 5) {
 
 }
 
-void qsimDetectorConstruction::QModeSet(G4int qMode = 3) {
+void qsimDetectorConstruction::QModeSet(G4int qMode = 1) {
 
     fQMode = qMode;
     // 0 is PREX-I design
@@ -94,7 +94,7 @@ qsimDetectorConstruction::qsimDetectorConstruction() {
     quartz_y = 1.85*cm/2;//1.65*cm;
     quartz2_y = 7.5*cm;
     //Change quartz thickness here.
-    quartz_z = 3*mm;//0.65*cm;
+    quartz_z = 6*mm;//0.65*cm;
     quartz2_z = 0.5*cm;
     }
 // ===================================================================REPLACE THIS STUFF===============================================================================
