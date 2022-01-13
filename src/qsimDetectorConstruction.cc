@@ -93,7 +93,7 @@ qsimDetectorConstruction::qsimDetectorConstruction() {
     quartz2_x = 1.75*cm;
     quartz_y = 1.85*cm/2;//1.65*cm;
     quartz2_y = 7.5*cm;
-    //Change quartz thickness here.
+    //Change quartz half-thickness here.
     quartz_z = 3*mm;//0.65*cm;
     quartz2_z = 0.5*cm;
     }
