@@ -118,8 +118,8 @@ qsimDetectorConstruction::qsimDetectorConstruction() {
       quartz_y = 36.*cm/2;//1.65*cm;
       quartz2_y = 12.*cm/2;
       //Change quartz thickness here.
-      quartz_z = 1.*cm/2;//0.65*cm;
-      quartz2_z = 1.*cm/2;
+      quartz_z = 10.*mm/2;//0.65*cm;
+      quartz2_z = 10.*mm/2;
     }
 // ================================== LAM - Daniel Valmassei ===================
 
@@ -337,7 +337,7 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
     for (int i = 0; i < nEntries; i++) {
 
         PhotonEnergy[i] = PhotonEnergy[i]*eV;
-    EfficiencyArray[i] = 0.01*1.0438*EfficiencyArrayPercent[i];
+    EfficiencyArray[i] = 1.0;//0.01*1.0438*EfficiencyArrayPercent[i];
         RefractiveIndex1[i]= 1.438 + (.01197*PhotonEnergy[i]/eV) - (.001955*PhotonEnergy[i]*PhotonEnergy[i]/eV/eV) + (.0004793*PhotonEnergy[i]*PhotonEnergy[i]*PhotonEnergy[i]/eV/eV/eV);
 
         // *** need to update this
@@ -349,7 +349,7 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
 
         // *** need to update this
         //if (PhotonEnergy[i] < 4.135*eV) {
-	Reflectivity1[i] = 0.1;//Wrapping Reflectivity: 0.8 Mylar, 0.1 Kapton;
+	Reflectivity1[i] = 1.0;//0.8;//Wrapping Reflectivity: 0.8 Mylar, 0.1 Kapton;
         if (PhotonEnergy[i] < 3.53*eV) {
         //if (PhotonEnergy[i] < 3.93*eV) {
 	  //Reflectivity1[i] = 0.9825;// 0.625;
