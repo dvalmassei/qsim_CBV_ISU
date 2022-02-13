@@ -361,7 +361,7 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
             //Reflectivity_laterals[i] = 0.4;//0.725;//0.75;//0.8;
         } else {
             //Reflectivity1[i] = 0.9825;//0.4;  // .6
-            Reflectivity_laterals[i] = 0.2;//0.2;//0.8;
+            Reflectivity_laterals[i] = 0.8;//0.2;//0.8;
         }
 
         RefractiveIndex2[i] = 1.;
