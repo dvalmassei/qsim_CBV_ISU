@@ -118,8 +118,8 @@ qsimDetectorConstruction::qsimDetectorConstruction() {
       quartz_y = 36.*cm/2;//1.65*cm;
       quartz2_y = 12.*cm/2;
       //Change quartz thickness here.
-      quartz_z = 10.*mm/2;//0.65*cm;
-      quartz2_z = 10.*mm/2;
+      quartz_z = 1.*mm/2;//0.65*cm;
+      quartz2_z = 1.*mm/2;
     }
 // ================================== LAM - Daniel Valmassei ===================
 
