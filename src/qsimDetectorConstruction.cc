@@ -366,7 +366,7 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
             Reflectivity_laterals[i] = 0.8;//0.2;//0.8;
         }
 
-        RefractiveIndex2[i] = 1.;
+        RefractiveIndex2[i] = 1.003;
         Reflectivity2[i] = 0.8;//0.01*CathodeReflectivity[i]; //cathode reflectivity
         QWReflectivity[i] = 0.0;
     }
