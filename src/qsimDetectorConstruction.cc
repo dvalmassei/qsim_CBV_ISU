@@ -118,8 +118,8 @@ qsimDetectorConstruction::qsimDetectorConstruction() {
       quartz_y = 36.*cm/2;//1.65*cm;
       quartz2_y = 12.*cm/2;
       //Change quartz thickness here.
-      quartz_z = 10.*mm/2;//0.65*cm;
-      quartz2_z = 10.*mm/2;
+      quartz_z = 10.*cm/2;//0.65*cm;
+      quartz2_z = 10.*cm/2;
     }
 // ================================== LAM - Daniel Valmassei ===================
 
@@ -348,7 +348,7 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
             Absorption1[i] = 25*m;
         }
 
-        Absorption2[i] = 1000*m;
+        Absorption2[i] = 25*m;
         // *** need to update this
         //if (PhotonEnergy[i] < 4.135*eV) {
 	Reflectivity1[i] = 1.0;//0.8;//Wrapping Reflectivity: 0.8 Mylar, 0.1 Kapton;
@@ -366,7 +366,7 @@ G4double Reflectivity_laterals[nEntries];// = {0.7612, 0.7621, 0.764, 0.764, 0.7
             Reflectivity_laterals[i] = 0.8;//0.2;//0.8;
         }
 
-        RefractiveIndex2[i] = 1.0003;
+        RefractiveIndex2[i] = 1.;//0003;
         Reflectivity2[i] = 0.8;//0.01*CathodeReflectivity[i]; //cathode reflectivity
         QWReflectivity[i] = 0.0;
     }
