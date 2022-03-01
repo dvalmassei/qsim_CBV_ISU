@@ -1,10 +1,10 @@
 # Example run macro for qsim
 
 # Set run mode
-/qsim/fDetMode 5 
+/qsim/fDetMode 5
 /qsim/fQMode 3
 /qsim/fStandMode 0
-/qsim/fSourceMode 2
+/qsim/fSourceMode 1
 
 # Set detector properties
 /qsim/fQuartzPolish 0.975
